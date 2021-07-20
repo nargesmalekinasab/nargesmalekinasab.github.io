@@ -78,10 +78,6 @@ https://templatemo.com/tm-531-reflux
           </div>
         </div>
       </div>
-      <video width="400" controls>
-        <source src="assets/video/ipakMineC.mp4" type="video/mp4">
-        Your browser does not support HTML video.
-      </video>
       <section class="section about-me" data-section="section1">
         <div class="container">
           <div class="section-heading">
@@ -247,12 +243,14 @@ Adobe Audition
                     />
                     <figcaption>
                       <a
-                        href="assets/images/portfolio-01.jpg"
-                        data-lightbox="image-1"
-                        data-title="Caption"
+                        class="video"
+                        href="#"
+                        data-video="assets/video/motiongraphic/ipakMineC.mp4"
+                        data-toggle="modal"
+                        data-target="#videoModal"
                         ><i class="fa fa-search"></i
                       ></a>
-                      <h4>First Title</h4>
+                      <h4>Ipak mehr</h4>
                       <span>free to use our template</span>
                     </figcaption>
                   </figure>
@@ -266,9 +264,11 @@ Adobe Audition
                     />
                     <figcaption>
                       <a
-                        href="assets/images/portfolio-02.jpg"
-                        data-lightbox="image-1"
-                        data-title="Caption"
+                        class="video"
+                        href="#"
+                        data-video="assets/video/motiongraphic/Bime.mp4"
+                        data-toggle="modal"
+                        data-target="#videoModal"
                         ><i class="fa fa-search"></i
                       ></a>
                       <h4>Second Title</h4>
@@ -357,7 +357,6 @@ Adobe Audition
           </div>
         </div>
       </section>
-
       <section class="section contact-me" data-section="section4">
         <div class="container">
           <div class="section-heading">
@@ -437,7 +436,18 @@ Adobe Audition
         </div>
       </section>
     </div>
-
+    <div class="modal fade" data-backdrop="static" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="setTimeout(function(){ $('#vvv').attr('src','');$('#vvvideo').load() }, 300);"><span aria-hidden="true">&times;</span></button>
+            <video controls width="100%" height="100%" id="vvvideo" autoplay>
+              <source src="" type="video/mp4" id="vvv">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -495,6 +505,19 @@ Adobe Audition
 
       $(window).scroll(function() {
         checkSection();
+      });
+
+      $(function() {
+        $(".video").click(function () {
+          var theModal = $(this).data("target"),
+              videoSRC = $(this).attr("data-video"),
+              videoSRCauto = videoSRC + "";
+          $(theModal + ' source').attr('src', videoSRCauto);
+          $(theModal + ' video').load();
+          $(theModal + ' button.close').click(function () {
+            $(theModal + ' source').attr('src', videoSRC);
+          });
+        });
       });
     </script>
   </body>
